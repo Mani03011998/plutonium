@@ -14,11 +14,17 @@ router.get("/random" , function(req, res) {
 
 router.get("/test-api" , function(req, res) {
     res.send("hi FunctionUp")
+
 })
 
 
 router.get("/test-api-2" , function(req, res) {
     res.send("hi FunctionUp. This is another cool API")
+
+})
+
+router.post("/new",function(req,res){
+    res.send([ 26,5, "alpha"])
 })
 
 
@@ -51,10 +57,10 @@ router.post("/test-post-2", function(req, res) {
 })
 
 router.post("/test-post-3", function(req, res) {
-    // let id = req.body.user
-    // let pwd= req.body.password
+    let id = req.body.user
+    let pwd= req.body.password
 
-    // console.log( id , pwd)
+    console.log( id , pwd)
 
     console.log( req.body )
 
@@ -64,10 +70,18 @@ router.post("/test-post-3", function(req, res) {
 
 
 router.post("/test-post-4", function(req, res) {
-    let arr= [ 12, "functionup"]
+    let arr= [ "Mani", "Saurabh","Sonu","Saket"]
     let ele= req.body.element
-    arr.push(ele)
-    res.send(  { msg: arr , status: true }  )
+    let player = false //This is called flagging .This is important for us to learn
+    for (i=0;i<arr.length;i++){
+        if(ele === arr[i]){
+            player = true
+            break;
+        }
+    }if (player===false){
+        arr.push(ele)
+        res.send(arr)
+    }else{res.send("Player already exist")}
 })
 
 module.exports = router;
